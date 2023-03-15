@@ -1,23 +1,40 @@
 
 import java.util.Scanner;
 public class Main {
-    //DETERMINAR DÍAS DEL LOS MESES
-    public static int DiasMes(int año, String mes){
-        if (mes=="ENERO" || mes=="MARZO" || mes=="MAYO" || mes=="JULIO" || mes=="AGOSTO" || mes=="OCTUBRE" || mes=="DICIEMBRE"){
+    public static void main(String[] args) {
+        System.out.println("INGRESE UN AÑO: ");
+        int nAño=new Scanner(System.in).nextInt();
+        for (int i=1; i<=12; i++){
+            System.out.println();
+            System.out.println("D L M M J V S");
+            int dias=dMes (nAño, i);
+            int contador=0;
+
+            for (int j=1; j<=dias; j++);{
+                System.out.println(j+"");
+                contador++;
+                if (contador==7){
+                    System.out.println();
+                    contador=0;
+                }
+            }
+        }
+    }
+    public static int dMes(int año, int mes){
+        if (mes==1 || mes==3 || mes==5 || mes==7 || mes==1 || mes==8 || mes==10 || mes==12 ){
             return 31;
-        }else if (mes=="FEBRERO"){
-            if (AñoBisiesto(año)){
+        } else if (mes==2) {
+            if (esBisiesto(año)){
                 return 29;
-            }else {
+            }else{
                 return 28;
             }
-        }else {
+        }else{
             return 30;
         }
     }
-    //DETERMINAR SI EL AÑO ES BISIESTO
-    public static boolean AñoBisiesto(int año){
-        if (año % 4==0){
+    public static boolean esBisiesto(int año){
+        if (año%4==0){
             if (año%100==0){
                 if (año%400==0){
                     return true;
@@ -30,23 +47,5 @@ public class Main {
         }else {
             return false;
         }
-    }
-    public static void Calendario(int año){
-        String[]Nmeses={"ENERO","FEBRERO","MARZO","ABRIL","MAYO","JUNIO","JULIO", "AGOSTO","SEPTIEMBRE","OCTUBRE","NOVIEMBRE","DICIEMBRE"};
-        for (int i=0; i<=11; i++ ){
-            System.out.println(Nmeses[i]);
-            System.out.println("D L M M J V S ");
-            int dias=DiasMes(año,i);
-            for (int j=0; j>=dias; j++){
-                System.out.println(j+ " ");
-            }
-        }
-
-    }
-
-    public static void main(String[] args) {
-        System.out.print("INGRESE UN AÑO: ");
-        int año=new Scanner(System.in).nextInt();
-        Calendario(año);
     }
 }
